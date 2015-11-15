@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+        <title>Welcome To Your Page</title>
+    </head>
+    <body class="container">
+      <div class="well well-sm" style="text-align:center">
+          <h1>{{ user.getUsername }}</h1>
+          {% if is_admin == 1 %}
+          <form class="btn-group" action="/add_person" method="get">
+            <button class="btn btn-default btn-md">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Add Attendee
+            </button>
+          </form>
+          <form class="btn-group" action="/attendees" method="get">
+            <button class="btn btn-default btn-md">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> View All
+            </button>
+          </form>
+          {% endif %}
+      </div>
+      <table class="table">
+     <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Type</th>
+      <th>Amount Paid</th>
+      <th>Total</th>
+    </tr>
+      {% set total = 0 %}
+      {% for attendee in all_attendees %}
+      {% set total = total + attendee.amount %}
+      <tr>
+       <td>{{ attendee.id }}</td>
+       <td>{{ attendee.FirstName }} . {{ attendee.LastName }}</td>
+       <td>{{ attendee.email }}</td>
+       {% if attendee.Type == 0 %}
+       <td> Cash </td>
+       {% else %}
+       <td>Online</td>
+       {% endif %}
+       <td>{{ attendee.amount }}</td>
+       {% endfor %}
+       <td>{{ total }}</td>
+     </tr>
+
+    </table>
+  </body>
+</html>

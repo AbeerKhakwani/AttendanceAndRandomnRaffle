@@ -1,0 +1,95 @@
+All icons courtesy of The Noun Project
+-- thenounproject.com
+
+wrap
+-- Creative Stall
+
+hot bowl
+-- Oriane Juster
+
+takeout
+-- Ryan Dell
+
+sushi
+-- Isabel Martinez Isabel
+
+crab
+-- David Chapman
+
+sandwich
+-- Tom Glass, Jr.
+
+rice bowl w/ chopsticks
+-- Simon Child
+
+sausage on fork
+-- Killian McIlroy
+
+pizza
+-- Justin Alexander
+
+taco
+-- Dan Hetteix
+
+taco #2 (pita)
+-- Nicolas Vicent
+
+kebabs
+-- Mnna Omnha
+
+pasta
+-- Federico Falaschi
+
+potato
+-- Nathan Stang
+
+pretzel
+-- Claire Jones
+
+sad-toilet-man
+-- Edward Boatman
+
+wrap #2 (dark)
+-- Mauricio Gravana
+
+donut
+-- Saloni Sinha
+
+deli sandwich
+-- Alex Chocron
+
+coffee
+-- Rigo Peter
+
+chicken
+-- Patrick Morrison
+
+burger
+-- Pei Wen (Winnie) Kwang
+
+breakfast
+-- Matt W
+
+bbq
+-- Joris Hoogendoorn
+
+beer
+-- Edward Boatman
+
+croissant
+-- Daniele Falcone
+
+noodle
+-- Ji Sub Jeong
+
+vietnamese
+-- Brad Ashburn
+
+american
+-- Arthur Shlain
+
+korean
+-- Claire Jones
+
+soup
+-- DKHN

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+    <title>DOE Board</title>
+  </head>
+  <body class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-md-offset-3">
+            <h1 class="text-center login-title">Sign in to continue</h1>
+                <div class="well well-sm" style="text-align:center">
+                <form action="/login" method="post" class="form-signin">
+                  <h1 class="glyphicon glyphicon-user"></h1></br>
+                    <label for="signin_username">Profile Name:</label>
+                    <input type="text" id="signin_username" name="signin_username" required>
+                    <br>
+                    <label for="user_password">Password:&nbsp &nbsp &nbsp</label>
+                    <input type="password" name="user_password" required>
+                  </br>
+                    <button class="btn btn-default btn-md">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Sign in
+                    </button>
+                </form>
+                <form class="btn-group inline" action="/create_user" method="get">
+                    <button class="btn btn-default btn-md">
+                        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Create Profile
+                    </button>
+                </form>
+              </div>
+            <div>
+
+  </body>
+</html>
