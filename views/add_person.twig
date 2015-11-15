@@ -21,38 +21,29 @@
   </div>
         <h1>Add an Attendee</h1>
         {% if is_admin == 1 %}
-        <form class="form-inline" action="\attendees" method="post">
-          <div class="form-group">
-           <label class="col-sm-3 control-label">Email</label>
-           <div class="col-sm-4">
-             <input type="email" class="form-control" name="email" placeholder="Email">
-           </div>
-         </div>
+        <form class="form-horizontal" action="\attendees" method="post">
+          <div class="form-group" >
+             <input  type="email" class="form-control" name="email" placeholder="Email" required>
+         </div><br/>
          <div class="form-group">
-           <label for="name" class="col-sm-3 control-label">First Name</label>
-           <div class="col-sm-4">
-             <input type="text" class="form-control" name="fname" placeholder="First Name">
-           </div>
-         </div>
+             <input type="text" class="form-control" name="fname" placeholder="First Name" required>
+         </div><br/>
          <div class="form-group">
-           <label for="name" class="col-sm-3 control-label">Last Name</label>
-           <div class="col-sm-4">
-             <input type="text" class="form-control" name="lname" placeholder="Last Name">
-           </div>
-         </div>
-         <select name="type" class="form-control">
+             <input type="text" class="form-control" name="lname" placeholder="Last Name" required>
+         </div><br/>
+         <div class="form-group">
+         <select name="type" class="form-control" >
            <option value="0">Cash</option>
            <option value="1">Online</option>
-        </select>
+        </select></div><br/>
         <div class="form-group">
-             <label class="sr-only" for="exampleInputAmount">Amount Paid (in dollars)</label>
              <div class="input-group">
                <div class="input-group-addon">$</div>
-               <input type="text" name="amount" class="form-control" id="exampleInputAmount" placeholder="Amount Paid(in dollars)">
+               <input type="text" name="amount" class="form-control" id="exampleInputAmount" placeholder="Amount Paid(in dollars)" required>
                <div class="input-group-addon">.00</div>
              </div>
         </div>
-           <button type="submit" class="btn btn-primary">Submit</button>
+           <button type="submit" class="btn btn-primary col-md-lg">Submit</button>
         </form>
         {% endif %}
         <footer id="footer" class="navbar navbar-fixed-bottom">
