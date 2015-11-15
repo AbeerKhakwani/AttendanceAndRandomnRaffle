@@ -22,7 +22,7 @@
 
       );
       $DB = $app['pdo'];
-    //  $DB = new PDO('pgsql:host=localhost;dbname=epifoodus');
+      // $DB = new PDO('pgsql:host=localhost;dbname=epifoodus');
 
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
         'twig.path' => __DIR__.'/../views'
@@ -109,11 +109,13 @@ $app->post("/login", function() use($app) {
         $_SESSION['user_id']=$user_id;
         $new_user_is_admin = $user->getAdmin();
         $_SESSION['is_admin'] = $new_user_is_admin;
-        return $app['twig']->render('user.twig', array(
-            'user'=> $user,
-            'user_id' => $_SESSION['user_id'],
-            'is_admin' => $_SESSION['is_admin']));
-    }
+        return $app->redirect('/user');
+      }
+    //     return $app['twig']->render('user.twig', array(
+    //         'user'=> $user,
+    //         'user_id' => $_SESSION['user_id'],
+    //         'is_admin' => $_SESSION['is_admin']));
+    // }
     else {
         return $app['twig']->render('main.twig',array(
             'user' => $user,
