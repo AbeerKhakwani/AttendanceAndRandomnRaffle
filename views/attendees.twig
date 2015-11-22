@@ -10,16 +10,16 @@
   <div class="well well-sm" style="text-align:center">
     <h1>{{ user.getUsername }}</h1>
     {% if is_admin == 1 %}
-    <form class="btn-group" action="/add_person" method="get">
+    <a class="btn-group" href="/add_person" method="get">
       <button class="btn btn-default btn-md">
         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Add Attendee
       </button>
-    </form>
-    <form class="btn-group" action="/attendees" method="get">
+    </a>
+    <a class="btn-group" href="/attendees" method="get">
       <button class="btn btn-default btn-md">
         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> View All
       </button>
-    </form>
+    </a>
     {% endif %}
   </div>
 <div class="col-md-2">
