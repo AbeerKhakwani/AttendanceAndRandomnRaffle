@@ -4,7 +4,7 @@
   <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.js"></script>
-  <title>Welcome To Your Page</title>
+  <title>View All Attendees</title>
 </head>
 <body class="container">
   <div class="well well-sm" style="text-align:center">
@@ -38,8 +38,6 @@
         </div>
       </div>
     </div>
-
-</div>
   <table id="table" class="display" width="100%">
     <thead>
       <tr>
@@ -95,6 +93,7 @@
 
 
 $(document).ready(function () {
+
   $('#table').DataTable({
   });
 
@@ -108,15 +107,15 @@ $('form').submit(function(event) {
         data: formData
   })
      getStatus();
-  });
 
+  });
+  getStatus();
   function getStatus() {
        $.getJSON('/here', function(data) {
          $.each(data,function(index, value){
            var id = value['id'];
            var hidden = $('#'+id).val();
-           console.log(hidden +"   "+value['here']+ " "+value['FirstName'] ) ;
-
+          //  console.log(hidden +"   "+value['here']+ " "+value['FirstName'] ) ;
            if(hidden == value['here']){
              if(hidden == 1){
                $('#'+id).val("0");
@@ -129,13 +128,14 @@ $('form').submit(function(event) {
                $('#'+id).val("1");
                $(':button.'+ value['id']).removeClass( "btn-success" ).addClass( "btn-info" );
                var text =$(':button.'+ value['id']).html("");
-               console.log(text);
                $(':button.'+ value['id']).html("Here");
              }
            }
+
          });
        });
-      //  setTimeout(getStatus(),20000);
+       console.log('test called');
+       setTimeout(getStatus, 6000);
    }
 
 
