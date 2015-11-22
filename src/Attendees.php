@@ -7,13 +7,15 @@ class Attendees
 	private $amount;
 	private $Type;
 	private $email;
+	private $here;
 
-	function __construct($new_FirstName, $new_LastName, $new_amount, $new_Type,$new_email, $new_id = null)
+	function __construct($new_FirstName, $new_LastName, $new_amount, $new_Type,$new_email,$new_here = 0,$new_id = null)
 	{
 		$this->id       = $new_id;
 		$this->LastName = $new_LastName;
 		$this->FirstName= $new_FirstName;
 		$this->amount   = $new_amount;
+		$this->here     = $new_here;
 		$this->Type     = $new_Type;
     $this->email    = $new_email;
 	}
@@ -65,6 +67,14 @@ class Attendees
 	{
 		$this->Type = $new_Type;
 	}
+	function getHere()
+	{
+		return $this->here;
+	}
+	function setHere($new_here)
+	{
+		$this->here = $here;
+	}
 	function save()
 	{
 		$statemnt = $GLOBALS['DB']->query("INSERT INTO attendees(fname,lname,amount,type,email) VALUES
@@ -82,15 +92,16 @@ class Attendees
 			$Type     = $attendees['type'];
 			$amount    = $attendees['amount'];
 			$email    = $attendees['email'];
+			$here    = $attendees['here'];
 			$id       = $attendees['id'];
-			$new_attendees = new attendees($FirstName, $LastName, $amount, $Type, $email,$id);
+			$new_attendees = new attendees($FirstName, $LastName, $amount, $Type, $email,$here,$id);
 			array_push($attendeess, $new_attendees);
 		}
 		return $attendeess;
 	}
 	static function deleteAll()
 	{
-		$GLOBALS['DB']->exec("DELETE FROM attendeess *;");
+		$GLOBALS['DB']->exec("DELETE FROM attendees *;");
 	}
 	static function find($search_id)
 	{
@@ -106,22 +117,51 @@ class Attendees
 	}
 	function updateFirstName($attendees_name)
 	{
-		$GLOBALS['DB']->exec("UPDATE attendeess SET FirstName={$attendees_name} WHERE id={$this->getId()};");
+		$GLOBALS['DB']->exec("UPDATE attendees SET FirstName={$attendees_name} WHERE id={$this->getId()};");
 		$this->setFirstName($attendees_name);
 	}
 	function updateLastName($new_LastName)
 	{
-		$GLOBALS['DB']->exec("UPDATE attendeess SET LastName={$new_LastName} WHERE id={$this->getId()};");
+		$GLOBALS['DB']->exec("UPDATE attendees SET LastName={$new_LastName} WHERE id={$this->getId()};");
 		$this->setLastName($new_LastName);
+	}
+	function updatePerson($new_here)
+	{
+		$GLOBALS['DB']->exec("UPDATE attendees SET Here={$new_here} WHERE id={$this->getId()};");
+		$this->setLastName($new_here);
 	}
 	function delete()
 	{
-		$GLOBALS['DB']->exec("DELETE FROM attendeess * WHERE id={$this->getId()};");
+		$GLOBALS['DB']->exec("DELETE FROM attendees * WHERE id={$this->getId()};");
 	}
 
+	static function getTotal(){
+ 	 $returned_users = $GLOBALS['DB']->query("SELECT SUM(amount), count(*) FROM attendees;");
+	 $total =  array();
+	 foreach ($returned_users as  $value) {
+    $total['total']= $value[0];
+		$total['attendees']=$value[1];
+	 }
+   return $total;
+  }
 
-
-
+	static function getAllNonObject()
+	{
+		$returned_attendeess = $GLOBALS['DB']->query("SELECT * FROM attendees ;");
+		$attendeess          = array();
+		foreach ($returned_attendeess as $attendees) {
+			$FirstName = $attendees['fname'];
+			$LastName = $attendees['lname'];
+			$Type     = $attendees['type'];
+			$amount    = $attendees['amount'];
+			$email    = $attendees['email'];
+			$here    = $attendees['here'];
+			$id       = $attendees['id'];
+			$new_attendees = array('FirstName' =>$FirstName ,'LastName'=> $LastName,'Type'=>$Type,'amount '=>$amount,'email' =>$email,'here'=>$here,'id'=>$id); ;
+			array_push($attendeess, $new_attendees);
+		}
+		return $attendeess;
+	}
 }
 
 ?>

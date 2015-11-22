@@ -22,7 +22,7 @@
 
       );
       $DB = $app['pdo'];
-      // $DB = new PDO('pgsql:host=localhost;dbname=epifoodus');
+      //  $DB = new PDO('pgsql:host=localhost;dbname=epifoodus');
 
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
         'twig.path' => __DIR__.'/../views'
@@ -145,9 +145,11 @@ $app->post("/attendees", function() use($app) {
     $admin_status = $_SESSION['is_admin'];
     $new_person = new Attendees($_POST['fname'],$_POST['lname'],$_POST['amount'],$_POST['type'],$_POST['email']);
     $new_person->save();
+    $totalMoney = Attendees::getTotal();
     $attendees = Attendees::getAll();
     return $app['twig']->render('attendees.twig', array(
         'user' => $current_user,
+        'total' =>   $totalMoney,
         'is_admin' => $admin_status,
         'all_attendees' => $attendees));
 });
@@ -156,19 +158,30 @@ $app->get("/attendees", function() use($app) {
     $current_user = User::find($_SESSION['user_id']);
     $admin_status = $_SESSION['is_admin'];
     $attendees = Attendees::getAll();
-    return $app['twig']->render('attendees.twig', array(
+    $totalMoney = Attendees::getTotal();
+      return $app['twig']->render('attendees.twig', array(
         'user' => $current_user,
         'is_admin' => $admin_status,
-        'all_attendees' => $attendees));
+        'all_attendees' => $attendees,
+        'total' =>   $totalMoney ));
 });
 
 $app->get("/add_person", function() use($app) {
     $current_user = User::find($_SESSION['user_id']);
     $admin_status = $_SESSION['is_admin'];
-
     return $app['twig']->render('add_person.twig', array(
         'user' => $current_user,
         'is_admin' => $admin_status,));
 });
+$app->post("/here", function() use($app) {
+    $current_user = Attendees::find($_POST['id']);
+    $current_user->updatePerson($_POST['here']);
+});
+$app->get("/here", function() use($app) {
+  $attendees = Attendees::getAllNonObject();
+  return $app->json($attendees);
+});
+
+
     return $app;
 ?>

@@ -1,50 +1,143 @@
 <html>
-    <head>
-        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
-        <title>Welcome To Your Page</title>
-    </head>
-    <body class="container">
-      <div class="well well-sm" style="text-align:center">
-          <h1>{{ user.getUsername }}</h1>
-          {% if is_admin == 1 %}
-          <form class="btn-group" action="/add_person" method="get">
-            <button class="btn btn-default btn-md">
-                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Add Attendee
-            </button>
-          </form>
-          <form class="btn-group" action="/attendees" method="get">
-            <button class="btn btn-default btn-md">
-                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> View All
-            </button>
-          </form>
-          {% endif %}
+<head>
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+  <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.js"></script>
+  <title>Welcome To Your Page</title>
+</head>
+<body class="container">
+  <div class="well well-sm" style="text-align:center">
+    <h1>{{ user.getUsername }}</h1>
+    {% if is_admin == 1 %}
+    <form class="btn-group" action="/add_person" method="get">
+      <button class="btn btn-default btn-md">
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Add Attendee
+      </button>
+    </form>
+    <form class="btn-group" action="/attendees" method="get">
+      <button class="btn btn-default btn-md">
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> View All
+      </button>
+    </form>
+    {% endif %}
+  </div>
+<div class="col-md-2">
+  <div class="panel panel-info" >
+    <div class="panel-heading">Total Money:</div>
+      <div class="panel-body">
+        <p> ${{total.total}} </p>
       </div>
-      <table class="table">
-     <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Type</th>
-      <th>Amount Paid</th>
-      <th>Total</th>
-    </tr>
-      {% set total = 0 %}
-      {% for attendee in all_attendees %}
-      {% set total = total + attendee.amount %}
-      <tr>
-       <td>{{ attendee.id }}</td>
-       <td>{{ attendee.FirstName }} . {{ attendee.LastName }}</td>
-       <td>{{ attendee.email }}</td>
-       {% if attendee.Type == 0 %}
-       <td> Cash </td>
-       {% else %}
-       <td>Online</td>
-       {% endif %}
-       <td>{{ attendee.amount }}</td>
-       {% endfor %}
-       <td>{{ total }}</td>
-     </tr>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="panel panel-info" >
+      <div class="panel-heading">Total Attendees</div>
+        <div class="panel-body">
+          <p> {{total.attendees}}</p>
+        </div>
+      </div>
+    </div>
 
-    </table>
-  </body>
+</div>
+  <table id="table" class="display" width="100%">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Type</th>
+        <th>Amount Paid</th>
+        <th>Present</th>
+      </tr>
+    </thead>
+
+    <tfoot>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Type</th>
+        <th>Amount Paid</th>
+        <th>Present</th>
+      </tr>
+    </tfoot>
+    <tbody>
+      {% for attendee in all_attendees %}
+      <tr>
+        <form class="here" action="\here" method="post">
+          <input name="id" type="hidden" value="{{ attendee.id }}">
+           <td>{{ attendee.id }}</td>
+           <td>{{ attendee.FirstName }}  {{ attendee.LastName }}</td>
+           <td>{{ attendee.email }}</td>
+           {% if attendee.Type == 0 %}
+           <td>Cash</td>
+           {% else %}
+           <td>Online</td>
+           {% endif %}
+           <td>${{ attendee.amount }}</td>
+           {% if attendee.here == 0 %}
+           <input value="1"  name="here" id="{{ attendee.id }}" type="hidden">
+           <td><button type="submit"  class="btn btn-info {{ attendee.id }}">Here</button></td>
+           {% else %}
+           <input value="0"  name="here" id="{{ attendee.id }}" type="hidden">
+           <td><button type="submit"   class="btn btn-success {{ attendee.id }}">Not Here</button></td>
+           {% endif %}
+         </form>
+         </tr>
+     {% endfor %}
+    <tbody>
+</table>
+</body>
 </html>
+<script>
+
+
+
+$(document).ready(function () {
+  $('#table').DataTable({
+  });
+
+$('form').submit(function(event) {
+    event.preventDefault();
+    var formData = $( this ).serialize()
+    console.log(formData);
+    $.ajax({
+        type: 'POST',
+        url: $( this ).attr('action'),
+        data: formData
+  })
+     getStatus();
+  });
+
+  function getStatus() {
+       $.getJSON('/here', function(data) {
+         $.each(data,function(index, value){
+           var id = value['id'];
+           var hidden = $('#'+id).val();
+           console.log(hidden +"   "+value['here']+ " "+value['FirstName'] ) ;
+
+           if(hidden == value['here']){
+             if(hidden == 1){
+               $('#'+id).val("0");
+                $(':button.'+ value['id']).removeClass( "btn-info" ).addClass( "btn-success" );
+                var text =$(':button.'+ value['id']).html("");
+                 $(':button.'+ value['id']).html("Not Here");
+
+             }
+             else if(hidden == 0){
+               $('#'+id).val("1");
+               $(':button.'+ value['id']).removeClass( "btn-success" ).addClass( "btn-info" );
+               var text =$(':button.'+ value['id']).html("");
+               console.log(text);
+               $(':button.'+ value['id']).html("Here");
+             }
+           }
+         });
+       });
+      //  setTimeout(getStatus(),20000);
+   }
+
+
+});
+</script>
