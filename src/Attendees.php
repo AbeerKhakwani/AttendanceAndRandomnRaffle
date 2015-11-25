@@ -130,6 +130,10 @@ class Attendees
 		$GLOBALS['DB']->exec("UPDATE attendees SET Here={$new_here} WHERE id={$this->getId()};");
 		$this->setLastName($new_here);
 	}
+	function updatePersonWin()
+	{
+		$GLOBALS['DB']->exec("UPDATE attendees SET rafflewon = 1 WHERE id={$this->getId()};");
+	}
 	function delete()
 	{
 		$GLOBALS['DB']->exec("DELETE FROM attendees * WHERE id={$this->getId()};");
@@ -158,6 +162,19 @@ class Attendees
 			$here    = $attendees['here'];
 			$id       = $attendees['id'];
 			$new_attendees = array('FirstName' =>$FirstName ,'LastName'=> $LastName,'Type'=>$Type,'amount '=>$amount,'email' =>$email,'here'=>$here,'id'=>$id); ;
+			array_push($attendeess, $new_attendees);
+		}
+		return $attendeess;
+	}
+	static function getAllHere()
+	{
+		$returned_attendeess = $GLOBALS['DB']->query("SELECT fname ,id,lname FROM attendees Where here = 1 and rafflewon =0;");
+		$attendeess          = array();
+		foreach($returned_attendeess as $attendees) {
+			$FirstName = $attendees['fname'];
+			$id = $attendees['id'];
+			$LastName = $attendees['lname'];
+			$new_attendees = array('FirstName' => $FirstName,'id'=>$id,'LastName'=> $LastName); ;
 			array_push($attendeess, $new_attendees);
 		}
 		return $attendeess;

@@ -22,7 +22,7 @@
 
       );
       $DB = $app['pdo'];
-        // $DB = new PDO('pgsql:host=localhost;dbname=epifoodus');
+        //  $DB = new PDO('pgsql:host=localhost;dbname=epifoodus');
 
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
         'twig.path' => __DIR__.'/../views'
@@ -111,11 +111,6 @@ $app->post("/login", function() use($app) {
         $_SESSION['is_admin'] = $new_user_is_admin;
         return $app->redirect('/user');
       }
-    //     return $app['twig']->render('user.twig', array(
-    //         'user'=> $user,
-    //         'user_id' => $_SESSION['user_id'],
-    //         'is_admin' => $_SESSION['is_admin']));
-    // }
     else {
         return $app['twig']->render('main.twig',array(
             'user' => $user,
@@ -173,6 +168,14 @@ $app->get("/add_person", function() use($app) {
         'user' => $current_user,
         'is_admin' => $admin_status,));
 });
+
+$app->post("/deletePerson", function() use($app) {
+    $current_user = Attendees::find($_POST['id']);
+    $current_user->delete();
+    return $app->redirect('/attendees');
+});
+
+//Updates the here status of a person
 $app->post("/here", function() use($app) {
     $current_user = Attendees::find($_POST['id']);
     $current_user->updatePerson($_POST['here']);
@@ -181,6 +184,28 @@ $app->get("/here", function() use($app) {
   $attendees = Attendees::getAllNonObject();
   return $app->json($attendees);
 });
+$app->get("/raffle", function() use($app) {
+  $attendees_list = Attendees::getAllHere();
+  return $app['twig']->render('raffle.twig', array(
+    'all_here'=>$attendees_list
+  ));
+});
+$app->get("/raffleWinner", function() use($app) {
+    $attendees_list = Attendees::getAllHere();
+
+    $choices = [];
+    $picks = array_rand($attendees_list, 2);
+
+    array_push($choices, $attendees_list[$picks[0]]);
+    $attendeePicked = $choices[0];
+
+    $current_user = Attendees::find($attendeePicked['id']);
+    $current_user->updatePersonWin();
+
+    return $app->json($attendeePicked);
+});
+
+
 
 
     return $app;
