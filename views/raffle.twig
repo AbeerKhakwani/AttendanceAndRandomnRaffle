@@ -1,52 +1,52 @@
 <style>
 /***********************
-  RAISED BUTTONS
+RAISED BUTTONS
 ************************/
 .btn-primary.raised {
-	box-shadow: 0 3px 0 0 #007299;
+  box-shadow: 0 3px 0 0 #007299;
 }
 .btn-primary.raised:active, .btn-primary.raised.active {
-	background: #33a6cc;
-	box-shadow: none;
-	margin-bottom: -3px;
-	margin-top: 3px;
+  background: #33a6cc;
+  box-shadow: none;
+  margin-bottom: -3px;
+  margin-top: 3px;
 }
 
 /***********************
-  CUSTON BTN VALUES
+CUSTON BTN VALUES
 ************************/
 
 .btn {
-	padding: 14px 24px;
-	border: 0 none;
-	font-weight: 700;
-	letter-spacing: 1px;
-	text-transform: uppercase;
+  padding: 14px 24px;
+  border: 0 none;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 .btn:focus, .btn:active:focus, .btn.active:focus {
-	outline: 0 none;
+  outline: 0 none;
 }
 
 .btn-primary {
-	background: #0099cc;
-	color: #ffffff;
+  background: #0099cc;
+  color: #ffffff;
 }
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
-	background: #33a6cc;
+  background: #33a6cc;
 }
 .btn-primary:active, .btn-primary.active {
-	background: #007299;
-	box-shadow: none;
+  background: #007299;
+  box-shadow: none;
 }
 
 .test {
-   padding-top:10%;
-   width: 100%;
-   height:30%;
- }
- .coco{
-     margin-top: 5%;
- }
+  padding-top:10%;
+  width: 100%;
+  height:30%;
+}
+.coco{
+  margin-top: 5%;
+}
 </style>
 <html>
 <head>
@@ -58,23 +58,28 @@
   <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8 coco">
-     <button type="button" onclick="getWinner()" class="btn btn-primary btn-lg test raised">Raffle</button>
+      <button type="button" onclick="getWinner()" class="btn btn-primary btn-lg test raised">Raffle</button>
     </div>
   </div>
-      <div class="col-md-3"></div>
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 coco">
+      <center><h2 class="append"></h2></center>
     </div>
-    <div class="col-md-3"></div>
-  </body>
-  </html>
+  </div>
 
-  <script>
-  function getWinner() {
-    console.log("pull");
-    $.getJSON( "/raffleWinner", function(data) {
-      console.log(data);
-      $('.round-button').text(data['FirstName']);
-    });
-  }
+</body>
+</html>
+
+
+<script>
+function getWinner() {
+  console.log("pull");
+  $.getJSON( "/raffleWinner", function(data) {
+    console.log(data);
+    $('.append').text(data['FirstName']);
+  });
+}
 
 
 
