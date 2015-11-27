@@ -179,6 +179,32 @@ class Attendees
 		}
 		return $attendeess;
 	}
+	//
+	// static function getAllHere()
+	// {
+	// 	$returned_attendeess = $GLOBALS['DB']->query("SELECT fname ,id,lname FROM attendees Where here = 1 and rafflewon =0;");
+	// 	$attendeess          = array();
+	// 	foreach($returned_attendeess as $attendees) {
+	// 		$FirstName = $attendees['fname'];
+	// 		$id = $attendees['id'];
+	// 		$LastName = $attendees['lname'];
+	// 		$new_attendees = array('FirstName' => $FirstName,'id'=>$id,'LastName'=> $LastName); ;
+	// 		array_push($attendeess, $new_attendees);
+	// 	}
+	// 	return $attendeess;
+	// }
+	function updatePersonEdit($new_fname,$new_lname,$new_email,$new_amount,$new_type)
+	{
+		$GLOBALS['DB']->exec("UPDATE attendees SET fname='{$new_fname}',lname='{$new_lname}', email='{$new_email}', amount={$new_amount}, type={$new_type} Where id={$this->getId()};");
+		$this->setFirstName($new_fname);
+		$this->setLastName($new_lname);
+		$this->setEmail($new_email);
+		$this->setamount($new_amount);
+		$this->setType($new_type);
+	}
+
+
 }
+
 
 ?>

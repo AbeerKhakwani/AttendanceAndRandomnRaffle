@@ -205,7 +205,32 @@ $app->get("/raffleWinner", function() use($app) {
     return $app->json($attendeePicked);
 });
 
+$app->get("/editPerson/{id}", function($id) use($app) {
+  $person = Attendees::find($id);
+  $current_user = User::find($_SESSION['user_id']);
+  $admin_status = $_SESSION['is_admin'];
+  return $app['twig']->render('editPerson.twig', array(
+    'person'=>$person,
+    'user' => $current_user,
+    'is_admin' => $admin_status,
 
+  ));
+});
+
+$app->post("/editPerson", function() use($app) {
+  $current_user = User::find($_SESSION['user_id']);
+  $admin_status = $_SESSION['is_admin'];
+  $person = Attendees::find($_POST['id']);
+  $person->updatePersonEdit($_POST['fname'],$_POST['lname'],$_POST['email'],$_POST['amount'],$_POST['type']);
+  //
+  // return $app['twig']->render('Attendees.twig', array(
+  //   'person'=>$person,
+  //   'user' => $current_user,
+  //   'is_admin' => $admin_status,
+  //
+  // ));
+    return $app->redirect('/attendees');
+});
 
 
     return $app;

@@ -72,6 +72,11 @@
               <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
             </button>
           </form>
+          <form id="editPerson" action="\editPerson\{{ attendee.id }}" method="get">
+           <button type="submit" class="btn btn-default btn-sm">
+             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+           </button>
+         </form>
           </td>
            <td>{{ attendee.id }}</td>
            <td>{{ attendee.FirstName }}  {{ attendee.LastName }}</td>
