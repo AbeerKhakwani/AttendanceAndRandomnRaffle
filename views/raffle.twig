@@ -75,7 +75,7 @@ function getWinner() {
   console.log("pull");
   $.getJSON( "/raffleWinner", function(data) {
     console.log(data);
-    $('.append').text(data['FirstName']);
+    $('.append').text(data['FirstName']+" "+data['LastName']);
   });
 }
 
