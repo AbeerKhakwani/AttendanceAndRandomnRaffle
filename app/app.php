@@ -22,7 +22,7 @@
 
       );
       $DB = $app['pdo'];
-        //  $DB = new PDO('pgsql:host=localhost;dbname=epifoodus');
+        // $DB = new PDO('pgsql:host=localhost;dbname=epifoodus');
 
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
         'twig.path' => __DIR__.'/../views'
