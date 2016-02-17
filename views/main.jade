@@ -1,0 +1,22 @@
+//output:main.html
+doctype
+html
+	title DOE DASHBOARD
+	link(rel="stylesheet", href="../web/normalize.css")
+	link(rel="stylesheet", href="../web//skeleton.css")
+	link(rel="stylesheet", href="../web//styles.css")
+	link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,300' rel="stylesheet" type="text/css")
+	script(src="jquery-1.12.0.js")
+	script(src="scripts.js")
+	body
+	
+		.container.middle
+			row
+				.well.well-sm
+					form(action="/login", method="post", class="signinform")
+						.twelve.columns 
+							input(type="text", id="signin_username", name="signin_username", value="Username", required)
+							.circle
+								a(href="#") login
+							input(type="password", name="user_password", value="Password", required)
+					
