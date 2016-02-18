@@ -34,7 +34,7 @@ img {
   margin: 2%;
 }
 
-.circle a {
+.circle a{
     background: #0FA0CE;
     color: #fff;
     text-decoration: none;
@@ -44,7 +44,7 @@ img {
     width: 80px;
     font-size: 1.5em;
     border-radius: 75px;
-    display: inline-block;
+    display: inline;
     text-align: center;
     line-height: 80px;
 }

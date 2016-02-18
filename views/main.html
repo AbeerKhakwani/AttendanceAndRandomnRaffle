@@ -1,26 +1,21 @@
 <!DOCTYPE html>
 <html>
   <title>DOE DASHBOARD</title>
-  <link rel="stylesheet" href="normalize.css">
-  <link rel="stylesheet" href="skeleton.css">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../web/normalize.css">
+  <link rel="stylesheet" href="../web//skeleton.css">
+  <link rel="stylesheet" href="../web//styles.css">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
   <script src="jquery-1.12.0.js"></script>
   <script src="scripts.js"></script>
-
   <body>
     <div class="container middle">
       <row>
         <div class="well well-sm">
           <form action="/login" method="post" class="signinform">
-            <div class="twelve columns">
-              <input type="text" id="signin_username" name="signin_username" value="Hello" required>
+            <div class="twelve columns"> 
+              <input type="text" id="signin_username" name="signin_username" value="Username" required>
               <div class="circle">
-                <form class="btn-group inline" action="/create_user" method="get">
-                  <button class="btn btn-default btn-md">
-                    <a href="#">login</a>
-                  </button>
-                </form>
+                <form action="/create_user" method="get"><a action="/create_user" method="get">login </a></form>
               </div>
               <input type="password" name="user_password" value="Password" required>
             </div>
@@ -28,7 +23,5 @@
         </div>
       </row>
     </div>
-
   </body>
-
 </html>
