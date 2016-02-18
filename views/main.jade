@@ -18,6 +18,7 @@ html
 							input(type="text", id="signin_username", name="signin_username", value="Username", required)
 							.circle
 								form(action="/create_user", method="get", class="btn-group inline")
-									a(action="/create_user", method="get", href="") login 
+									button(class="btnlogin")
+										span Login
 							input(type="password", name="user_password", value="Password", required)
 					

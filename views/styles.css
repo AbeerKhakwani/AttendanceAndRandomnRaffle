@@ -34,7 +34,7 @@ img {
   margin: 2%;
 }
 
-.circle a{
+.btnlogin{
     background: #0FA0CE;
     color: #fff;
     text-decoration: none;
@@ -47,6 +47,11 @@ img {
     display: inline-block;
     text-align: center;
     line-height: 80px;
+}
+
+.btnlogin span{
+  text-align: center;
+  margin-left: -16px;
 }
 
 .circle button{
