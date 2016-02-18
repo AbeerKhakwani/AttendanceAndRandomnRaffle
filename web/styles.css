@@ -49,6 +49,7 @@ img {
     line-height: 80px;
 }
 
+.circle{
 .button, button, input[type="submit"], input[type="reset"], input[type="button"]{
     background: #0FA0CE;
     color: #fff;
@@ -62,6 +63,7 @@ img {
     display: inline-block;
     text-align: center;
     line-height: 80px;
+}
 }
 
 #btnlogin span{
