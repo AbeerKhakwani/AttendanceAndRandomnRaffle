@@ -17,7 +17,7 @@ html
 						.twelve.columns 
 							input(type="text", id="signin_username", name="signin_username", value="Username", required)
 							.circle
-								form(action="/create_user", method="get")
-									a(action="/create_user", method="get") login 
+								form(action="/create_user", method="get", class="btn-group inline")
+									a(action="/create_user", method="get", href="") login 
 							input(type="password", name="user_password", value="Password", required)
 					
