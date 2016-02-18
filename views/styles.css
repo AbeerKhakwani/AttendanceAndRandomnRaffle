@@ -1,0 +1,57 @@
+#signin_username {
+    color: #000;
+    width: 150px;
+    font-weight: 400;
+    background: #fff;
+    position: relative;
+    text-align: center;
+    margin-right: -5px;
+    display: inline-block;
+    padding: 12.5px 25px;
+}
+
+#user_password {
+    color: #000;
+    width: 150px;
+    font-weight: 400;
+    background: #fff;
+    position: relative;
+    text-align: center;
+    margin-right: -5px;
+    display: inline-block;
+    padding: 12.5px 25px;
+}
+
+img {
+    border-radius: 100px;
+    display: inline-block;
+    border: 7px solid #fff;
+}
+
+.circle{
+  width: 90px;
+  display: inline;
+  margin: 2%;
+}
+
+.circle a {
+    background: #0FA0CE;
+    color: #fff;
+    text-decoration: none;
+    text-transform: lowercase;
+    font-weight: 700;
+    height: 80px;
+    width: 80px;
+    font-size: 1.5em;
+    border-radius: 75px;
+    display: inline-block;
+    text-align: center;
+    line-height: 80px;
+}
+
+.middle{
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 25%;
+}
