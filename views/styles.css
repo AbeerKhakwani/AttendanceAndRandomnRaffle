@@ -49,20 +49,6 @@ img {
     line-height: 80px;
 }
 
-.button, button, input[type="submit"], input[type="reset"], input[type="button"]{
-    background: #0FA0CE;
-    color: #fff;
-    text-decoration: none;
-    text-transform: lowercase;
-    font-weight: 700;
-    height: 80px;
-    width: 80px;
-    font-size: 1.5em;
-    border-radius: 75px;
-    display: inline-block;
-    text-align: center;
-    line-height: 80px;
-}
 
 #btnlogin span{
   text-align: center;
@@ -78,4 +64,8 @@ img {
   margin: 0 auto;
   text-align: center;
   margin-top: 25%;
+}
+
+.center{
+  text-align: center;
 }
