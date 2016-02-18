@@ -12,18 +12,26 @@ html
 	script(src='jquery-1.12.0.js')
 	script(src='scripts.js')
 	body
-		//{% if is_admin == 1 %}
-		//form(action='/add_person', method='get') (Add Attendee button)
-		//form(action='/attendees', method='get') (View All button)
-		//form(action='/raffle', method='get') (Raffle)
-		//p You are logged in as {{ user.getUsername }}
-		//form(action='/logout', method='post') (Sign out Button)
-		//{% endif %}
+	.left-sidebar
+		p doe
+		hr
+	
+	.top-sidebar
+	
+	.mainsection
+	
+		{% if is_admin == 1 %}
+		form(action='/add_person', method='get') 
+			button Add Person
+		form(action='/attendees', method='get') 
+			button Attendees
+		form(action='/raffle', method='get')
+			button Raffle
+		p You are logged in as {{ user.getUsername }}
+		form(action='/logout', method='post')
+			button Logout
+		{% endif %}
 		
-		.left-sidebar
-			p doe
-			hr
 		
-		.top-sidebar
 			
 		
