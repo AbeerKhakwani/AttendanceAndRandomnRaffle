@@ -7,22 +7,22 @@
 
     $app = new Silex\Application();
     $app['debug'] = true;
-          // $dbopts = parse_url(getenv('DATABASE_URL'));
-      //     $app->register(new Herrera\Pdo\PdoServiceProvider(),
-      //           array(
-      //                // 'pdo.dsn'=>'pgsql:dbname=registrar;host=localhost',
-      //                // 'pdo.username'=>'abeer',
-      //                // 'pdo.password'=>'abeer'
-      //             'pdo.dsn' => 'pgsql:dbname='.ltrim($dbopts["path"],'/').';host='.$dbopts["host"],
-      //             'pdo.port' => $dbopts["port"],
-      //             'pdo.username' => $dbopts["user"],
-      //             'pdo.password' => $dbopts["pass"]
-      //
-      //           )
-      //
-      // );
-      // $DB = $app['pdo'];
-        $DB = new PDO('pgsql:host=localhost;dbname=epifoodus');
+          $dbopts = parse_url(getenv('DATABASE_URL'));
+          $app->register(new Herrera\Pdo\PdoServiceProvider(),
+                array(
+                     // 'pdo.dsn'=>'pgsql:dbname=registrar;host=localhost',
+                     // 'pdo.username'=>'abeer',
+                     // 'pdo.password'=>'abeer'
+                  'pdo.dsn' => 'pgsql:dbname='.ltrim($dbopts["path"],'/').';host='.$dbopts["host"],
+                  'pdo.port' => $dbopts["port"],
+                  'pdo.username' => $dbopts["user"],
+                  'pdo.password' => $dbopts["pass"]
+
+                )
+
+      );
+      $DB = $app['pdo'];
+        // $DB = new PDO('pgsql:host=localhost;dbname=epifoodus');
 
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
         'twig.path' => __DIR__.'/../views'
