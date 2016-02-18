@@ -13,19 +13,23 @@
     <hr>
   </div>
   <div class="top-sidebar"></div>
-  <div class="mainsection">{% if is_admin == 1 %}
-    <form action="/add_person" method="get">
-      <button>Add Person</button>
-    </form>
-    <form action="/attendees" method="get">
-      <button>Attendees</button>
-    </form>
-    <form action="/raffle" method="get">
-      <button>Raffle</button>
-    </form>
-    <p>You are logged in as {{ user.getUsername }}</p>
-    <form action="/logout" method="post">
-      <button>Logout</button>
-    </form>{% endif %}
+  <div class="mainsection">
+    {% if is_admin == 1 %}
+        <form class="btn-group" action="/add_person" method="get">
+          <button class="btn btn-default btn-md">
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Add Attendee
+          </button>
+        </form>
+        <form class="btn-group" action="/attendees" method="get">
+          <button class="btn btn-default btn-md">
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> View All
+          </button>
+        </form>
+        <form class="btn-group" action="/raffle" method="get">
+          <button class="btn btn-default btn-md">
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Raffle
+          </button>
+        </form>
+        {% endif %}
   </div>
 </html>
