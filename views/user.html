@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <title>DOE DASHBOARD</title>
   <link rel="stylesheet" href="normalize.css">
@@ -7,48 +8,13 @@
   <script src="jquery-1.12.0.js"></script>
   <script src="scripts.js"></script>
   <body>
-    <div class="well well-sm" style="text-align:center">
-      <h1>Welcome to your menu, {{ user.getUsername }}</h1>
-      {% if is_admin == 1 %}
-
-      <form class="btn-group" action="/add_person" method="get">
-        <button class="btn btn-default btn-md">
-        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Add Attendee
-        </button>
-      </form>
-
-      <form class="btn-group" action="/attendees" method="get">
-        <button class="btn btn-default btn-md">
-        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> View All
-        </button>
-      </form>
-
-      <form class="btn-group" action="/raffle" method="get">
-        <button class="btn btn-default btn-md">
-        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Raffle
-        </button>
-      </form>
-
-      {% endif %}
-    </div>
-
-    <footer id="footer" class="navbar navbar-fixed-bottom">
-      <div class="well well-sm" style="text-align:center">
-        <p>You are logged in as {{ user.getUsername }}</p>
-        <!-- home -->
-        <form class="btn-group inline" action="/" method="get">
-          <button class="btn btn-default btn-md">
-          <span class="glyphicon glyphicon-home"></span> Home
-          </button>
-        </form>
-        <!-- Sign out -->
-        <form class="btn-group" action="/logout" method="post">
-          <button class="btn btn-default btn-md">
-          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Sign Out
-          </button>
-        </form>
-      </div>
-    </footer>
-
+    <!--{% if is_admin == 1 %}-->
+    <!--form(action='/add_person', method='get') (Add Attendee button)-->
+    <!--form(action='/attendees', method='get') (View All button)-->
+    <!--form(action='/raffle', method='get') (Raffle)-->
+    <!--p You are logged in as {{ user.getUsername }}-->
+    <!--form(action='/logout', method='post') (Sign out Button)-->
+    <!--{% endif %}-->
+    <h1>hello</h1>
   </body>
 </html>

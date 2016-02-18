@@ -1,43 +1,20 @@
+//output:user.html
+doctype
 html
-  title DOE DASHBOARD
-  link(rel='stylesheet', href='normalize.css')
-  link(rel='stylesheet', href='skeleton.css')
-  link(rel='stylesheet', href='styles.css')
-  link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,300', rel='stylesheet', type='text/css')
-  script(src='jquery-1.12.0.js')
-  script(src='scripts.js')
-  body
-    .conainter.center
-      h1 Welcome to your menu, {{ user.getUsername }}
-			
-      |       {% if is_admin == 1 %}
-      
-			form(action='/add_person', method='get')
-        button
-          span(aria-hidden='true')
-          | Add Attendee
-      
-			form(action='/attendees', method='get')
-        button.btn.btn-default.btn-md
-          span.glyphicon.glyphicon-remove(aria-hidden='true')
-          |  View All
-      
-			form(action='/raffle', method='get')
-        button.btn.btn-default.btn-md
-          span.glyphicon.glyphicon-remove(aria-hidden='true')
-          |  Raffle
-      |       {% endif %}
-    
-		footer#footer.navbar.navbar-fixed-bottom
-      .container
-        p You are logged in as {{ user.getUsername }}
-        // home
-        form.inline(action='/', method='get')
-          button.btn.btn-default.btn-md
-            span.glyphicon.glyphicon-home
-            |  Home
-        // Sign out
-        form(action='/logout', method='post')
-          button.btn.btn-default.btn-md
-            span.glyphicon.glyphicon-remove(aria-hidden='true')
-            |  Sign Out
+	title DOE DASHBOARD
+	link(rel='stylesheet', href='normalize.css')
+	link(rel='stylesheet', href='skeleton.css')
+	link(rel='stylesheet', href='styles.css')
+	link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,300', rel='stylesheet', type='text/css')
+	script(src='jquery-1.12.0.js')
+	script(src='scripts.js')
+	body
+		//{% if is_admin == 1 %}
+		//form(action='/add_person', method='get') (Add Attendee button)
+		//form(action='/attendees', method='get') (View All button)
+		//form(action='/raffle', method='get') (Raffle)
+		//p You are logged in as {{ user.getUsername }}
+		//form(action='/logout', method='post') (Sign out Button)
+		//{% endif %}
+		
+		h1 hello
