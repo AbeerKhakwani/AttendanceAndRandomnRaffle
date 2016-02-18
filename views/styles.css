@@ -49,6 +49,10 @@ img {
     line-height: 80px;
 }
 
+.circle button{
+  border: none;
+}
+
 .middle{
   width: 100%;
   margin: 0 auto;
