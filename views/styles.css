@@ -34,7 +34,7 @@ img {
   margin: 2%;
 }
 
-.btnlogin{
+.btnlogin, .button, button, input[type="submit"], input[type="reset"], input[type="button"] {
     background: #0FA0CE;
     color: #fff;
     text-decoration: none;
